@@ -1,0 +1,174 @@
+@import 'partials/fonts';
+
+@mixin flexcolumn($gap){
+    display: flex;
+    flex-direction: column;
+    row-gap: $gap;
+}
+
+$dark-navy : hsl(234, 29%, 20%);
+$pale-navy : hsl(235, 18%, 26%);
+$grey : hsl(231, 7%, 60%);
+$grey-opa : hsl(231, 7%, 60%, .25);
+$orange : hsl(4, 100%, 67%);
+$orange-opa : hsl(4, 100%, 67%, .15);
+$orange-opa-2 : hsl(4, 100%, 67%, .5);
+
+* {
+    transition: .25s;
+}
+
+html , body {
+    display: flex;
+    place-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $pale-navy;
+}
+
+h1 , p {
+    color: $dark-navy;
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 100%;
+}
+
+p {
+    line-height: 150%;
+}
+
+.card {
+    background-color: white;
+}
+
+.card_content {
+    @include flexcolumn(40px);
+    padding: 40px 20px;
+    h1 {
+        font-size: 40px;
+    }
+    .container {
+        @include flexcolumn(24px);
+    }
+    .list {
+        @include flexcolumn(10px);
+        .text::before{
+            content: url(../assets/images/icon-list.svg);
+        }
+        .text {
+            display: flex;
+            flex-direction: row;
+            column-gap: 16px;
+        }
+    }
+}
+
+.card_form {
+    @include flexcolumn(24px);
+    .email_input {
+        @include flexcolumn(8px);
+    }
+}
+
+.form_label {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="email"]{
+    padding: 15px 25px;
+    border: 1px solid $grey;
+    border-radius: 8px;
+}
+
+input[type="email"]:focus{
+    padding: 15px 25px;
+    border: 1px solid $dark-navy;
+    border-radius: 8px;
+}
+
+input[type="email"]:not(:focus):invalid{
+    border: 1px solid $orange;
+    background-color: $orange-opa;
+}
+
+.error {
+    color: $orange;
+    visibility: hidden;
+}
+
+button {
+    padding: 15px 25px;
+    border-radius: 8px;
+    border: 1px solid $dark-navy;
+    background-color: $dark-navy;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    border: 1px solid $orange;
+    background-color: $orange;
+    box-shadow: 0px 20px 20px 0px $orange-opa-2;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.success_msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    padding: 40px 24px;
+    background-color: white;
+    .container {
+        position: relative;
+        top:15%;
+    }
+    h1 {
+        margin-top: 40px;
+        margin-bottom: 24px;
+    }
+}
+
+@media only screen and (min-width : 769px) {
+    .card {
+        display: flex;
+        flex-direction: row-reverse;
+        max-height: 641px;
+        max-width: 928px;
+        padding: 24px;
+        border-radius: 35px;
+    }
+
+    img {
+        max-width: 400px;
+    }
+
+    .card_content {
+        padding: 74px 64px 74px 40px;
+    }
+
+    .success_msg {
+        max-width: 504px;
+        max-height: 520px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 34px;
+        padding: 64px;
+        .container {
+            top: auto;
+            h1 {
+                margin-top : 39px;
+                margin-bottom : 28px;
+            }
+        }
+    }
+}
